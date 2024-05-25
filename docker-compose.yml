@@ -1,0 +1,36 @@
+version: '3'
+services:
+  internet-stats:
+    hostname: internet-stats
+    container_name: internet-stats
+    image: internet-stats:master
+    environment:
+      - HOST_HOSTNAME=${HOST_HOSTNAME}
+      - MONITOR_HOST=${MONITOR_HOST}
+      - MONITOR_UPDATE=${MONITOR_UPDATE}
+      - MONITOR_URL=${MONITOR_URL}
+      - MONITOR_SECRET=${MONITOR_SECRET}
+      - MONITOR_SRC=${MONITOR_SRC}.${HOST_HOSTNAME}
+      - MAIL_HOST=${MAIL_HOST}
+      - MAIL_USER=${MAIL_USER}
+      - MAIL_PASSWORD=${MAIL_PASSWORD}
+      - MAIL_FROM=${MAIL_FROM}
+      - MAIL_TO=${MAIL_TO}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - CHECK_URL=${CHECK_URL}
+      - HOST_URL=http://${HOST_HOSTNAME}:${PORT_CODETREATS_INTERNETSTATS_HTTP}
+      - MAIL_LEVEL_OK=OFF 
+      - MAIL_LEVEL_FAIL=LINK
+      - TZ=Europe/Berlin
+      - JOB_TITLE=Check-State
+      - DAYS=3
+    ports:
+      - ${PORT_CODETREATS_INTERNETSTATS_HTTP}:80
+      - ${PORT_CODETREATS_INTERNETSTATS_MYSQL}:3306
+    volumes:
+      - /media/nas/docker/data/internet-stats/dumps:/dumps
+      - /media/nas/server/data/git/codetreats/internet-stats/container/src:/debug/src:ro
+    restart: always
