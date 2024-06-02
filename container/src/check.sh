@@ -5,9 +5,8 @@ if [ "$CODE" == "200" ] ; then
     ONLINE=1
 fi
 
-SQL_DATE=$(date +%Y-%m-%d)
-SQL_TIME=$(date +%H:%M:%S)
+SQL_DATE_TIME=$(date +"%Y-%m-%d %H:%M:%S")
 
 mysql -u$MYSQL_USER -p$MYSQL_PASSWORD --database=$MYSQL_DATABASE << EOF
-INSERT INTO connectionstate (date, time, online) VALUES ('$SQL_DATE', '$SQL_TIME', $ONLINE);
+INSERT INTO connectionstate (datetime, online) VALUES ('$SQL_DATE', $ONLINE);
 EOF
