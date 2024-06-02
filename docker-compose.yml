@@ -6,6 +6,7 @@ services:
     image: internet-stats:master
     environment:
       - HOST_HOSTNAME=${HOST_HOSTNAME}
+      - SHORT_HOSTNAME=${SHORT_HOSTNAME}
       - MONITOR_HOST=${MONITOR_HOST}
       - MONITOR_UPDATE=${MONITOR_UPDATE}
       - MONITOR_URL=${MONITOR_URL}
@@ -31,6 +32,5 @@ services:
       - ${PORT_CODETREATS_INTERNETSTATS_HTTP}:80
       - ${PORT_CODETREATS_INTERNETSTATS_MYSQL}:3306
     volumes:
-      - /media/nas/docker/data/internet-stats/dumps:/dumps
-      - /media/nas/server/data/git/codetreats/internet-stats/container/src:/debug/src:ro
+      - /media/nas/docker/data/internet-stats/${SHORT_HOSTNAME}/dumps:/dumps
     restart: always
