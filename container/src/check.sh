@@ -8,5 +8,5 @@ fi
 SQL_DATE_TIME=$(date +"%Y-%m-%d %H:%M:%S")
 
 mysql -u$MYSQL_USER -p$MYSQL_PASSWORD --database=$MYSQL_DATABASE << EOF
-INSERT INTO connectionstate (datetime, online) VALUES ('$SQL_DATE', $ONLINE);
+INSERT INTO connectionstate (datetime, online) VALUES ('$SQL_DATE_TIME', $ONLINE);
 EOF
