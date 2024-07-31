@@ -1,6 +1,8 @@
 version: '3'
 services:
   internet-stats:
+    networks:
+      - default_network
     hostname: internet-stats
     container_name: internet-stats
     image: internet-stats:master
@@ -34,3 +36,7 @@ services:
     volumes:
       - /media/nas/docker/data/internet-stats/${SHORT_HOSTNAME}/dumps:/dumps
     restart: always
+networks:
+  default_network:
+    name: default_network
+    external: true

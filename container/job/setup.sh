@@ -1,10 +1,7 @@
 #!/bin/bash
 set -e
-service mariadb start
-if [ -f /prepared.flag ] ; then
-  exit
-fi
 
+service mariadb start
 echo "[PREPARE] Prepare DB"
 mysql -uroot -p$MYSQL_ROOT_PASSWORD -e "CREATE DATABASE $MYSQL_DATABASE;"
 mysql -uroot -p$MYSQL_ROOT_PASSWORD --database=$MYSQL_DATABASE -e "CREATE USER '$MYSQL_USER'@'%' IDENTIFIED BY '$MYSQL_PASSWORD';"
@@ -18,5 +15,3 @@ if [[ -f "/dumps/latest.sql" ]] ; then
 else
   mysql -uroot -p$MYSQL_ROOT_PASSWORD --database=$MYSQL_DATABASE < "/src/layout.sql"
 fi
-
-touch /prepared.flag

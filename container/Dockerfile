@@ -9,8 +9,7 @@ RUN ln -s /release/src /src
 RUN chmod +x /release/src/*
 RUN chmod +x /debug/src/*
 
-COPY scripts/prepare.sh /pipeline/src/prepare.sh
-COPY scripts/job.sh /job/
+COPY job/ /job
 COPY src/my.cnf /my.cnf
 
 RUN rm -f /etc/mysql/my.cnf && mkdir -p /etc/mysql && ln -s /my.cnf /etc/mysql/my.cnf
