@@ -34,7 +34,7 @@ services:
       - ${PORT_CODETREATS_INTERNETSTATS_HTTP}:80
       - ${PORT_CODETREATS_INTERNETSTATS_MYSQL}:3306
     volumes:
-      - /media/nas/docker/data/internet-stats/${SHORT_HOSTNAME}/dumps:/dumps
+      - /media/nas/docker/backup/internet-stats/${SHORT_HOSTNAME}/dumps:/dumps
     restart: always
 networks:
   default_network:

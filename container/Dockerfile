@@ -1,6 +1,5 @@
 FROM codetreats/simple-pipeline:latest
-RUN apt-get update
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -q -y mariadb-server phpmyadmin
+RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -q -y mariadb-server phpmyadmin
 RUN echo "Include /etc/phpmyadmin/apache.conf" >> /etc/apache2/apache2.conf
 COPY src /release/src
 COPY src /debug/src
